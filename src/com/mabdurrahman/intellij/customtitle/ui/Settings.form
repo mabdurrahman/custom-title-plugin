@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.mabdurrahman.intellij.customtitle.ui.Settings">
+  <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="685" height="1002"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="47164" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <labelFor value="d9917"/>
+          <text value="Project Title Template: "/>
+        </properties>
+      </component>
+      <component id="d9917" class="javax.swing.JTextField" binding="projectTemplatePattern">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="7035f" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <labelFor value="d99d8"/>
+          <text value="File Title Template:"/>
+        </properties>
+      </component>
+      <component id="d99d8" class="javax.swing.JTextField" binding="fileTemplatePattern">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="8f828" class="javax.swing.JTextPane" binding="usageHelp">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="8" fill="2" indent="1" use-parent-layout="false">
+            <preferred-size width="500" height="-1"/>
+            <maximum-size width="500" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <alignmentX value="0.5"/>
+          <alignmentY value="0.5"/>
+          <autoscrolls value="false"/>
+          <background color="-1"/>
+          <contentType value="text/html"/>
+          <editable value="false"/>
+          <enabled value="true"/>
+          <focusable value="false"/>
+          <opaque value="false"/>
+          <requestFocusEnabled value="false"/>
+          <selectionEnd value="1508"/>
+          <selectionStart value="1508"/>
+          <text value="&lt;html&gt;&#10;  &lt;head&gt;&#10;    &#10;  &lt;/head&gt;&#10;  &lt;body&gt;&#10;    &lt;div class=&quot;container&quot;&gt;&#10;      &lt;div class=&quot;help-content&quot;&gt;&#10;        &lt;h2 id=&quot;custom-title-help&quot;&gt;&#10;          Help&#10;        &lt;/h2&gt;&#10;        &lt;p&gt;&#10;          Set your own template for IntelliJ's based IDE title bar. Uses &lt;a href=&quot;http://underscorejs.org/#template&quot;&gt;underscore.js &#10;          templates&lt;/a&gt;.&#10;        &lt;/p&gt;&#10;        &lt;p&gt;&#10;          You have to specify both &amp;quot;Project Title Template&amp;quot; and &amp;quot;File Title &#10;          Template&amp;quot;, it falls back to default templates if any field is missed &#10;          or corrupted.&#10;        &lt;/p&gt;&#10;        &lt;p&gt;&#10;          The following variables are available for &amp;quot;Project Title Template&amp;quot;:&#10;        &lt;/p&gt;&#10;        &lt;ul&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;projectDefaultTitle&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;projectName&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;projectPath&lt;/code&gt;&#10;          &lt;/li&gt;&#10;        &lt;/ul&gt;&#10;        &lt;p&gt;&#10;          The following variables are available for &amp;quot;File Title Template&amp;quot;:&#10;        &lt;/p&gt;&#10;        &lt;ul&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;projectDefaultTitle&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;projectName&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;projectPath&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;fileDefaultTitle&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;fileName&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;filePath&lt;/code&gt;&#10;          &lt;/li&gt;&#10;          &lt;li&gt;&#10;            &lt;code&gt;fileExt&lt;/code&gt;&#10;          &lt;/li&gt;&#10;        &lt;/ul&gt;&#10;        &lt;h2 id=&quot;examples&quot;&gt;&#10;          Examples&#10;        &lt;/h2&gt;&#10;        &lt;h3 id=&quot;default&quot;&gt;&#10;          Default&#10;        &lt;/h3&gt;&#10;        &lt;p&gt;&#10;          The default templates matches the regular IntelliJ titlebar:&#10;        &lt;/p&gt;&#10;        &lt;br&gt;&#10;        Project Title Template:&lt;br&gt;&lt;br&gt;&lt;code&gt;&amp;lt;% if (projectDefaultTitle) { &#10;        %&amp;gt;&amp;lt;%= projectDefaultTitle %&amp;gt;&amp;lt;% } %&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;br&gt;File &#10;        Title Template:&lt;br&gt;&lt;br&gt;&lt;code&gt;&amp;lt;% if (fileDefaultTitle) { %&amp;gt;&amp;lt;%= &#10;        fileDefaultTitle %&amp;gt;&amp;lt;% } %&amp;gt;&lt;/code&gt;&#10;&#10;        &lt;h3 id=&quot;project-only&quot;&gt;&#10;          Project only title&#10;        &lt;/h3&gt;&#10;        Project Title Template:&lt;br&gt;&lt;br&gt;&lt;code&gt;&amp;lt;% if (projectDefaultTitle) { &#10;        %&amp;gt;&amp;lt;%= projectDefaultTitle %&amp;gt;&amp;lt;% } %&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;br&gt;File &#10;        Title Template (empty):&lt;br&gt;&lt;br&gt;&lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt;&#10;&#10;        &lt;h3 id=&quot;advanced&quot;&gt;&#10;          Advanced usage&#10;        &lt;/h3&gt;&#10;        Project Title Template (add week number):&lt;br&gt;&lt;br&gt;&lt;code&gt;&amp;lt;% &#10;        Date.prototype.getWeek = function() {var onejan = new &#10;        Date(this.getFullYear(),0,1); var today = new &#10;        Date(this.getFullYear(),this.getMonth(),this.getDate()); var dayOfYear &#10;        = ((today - onejan +1)/86400000); return Math.ceil(dayOfYear/7)}; if &#10;        (projectDefaultTitle) { %&amp;gt;&amp;lt;%= projectDefaultTitle %&amp;gt;&amp;lt;% } %&amp;gt; W: &amp;lt;%= new &#10;        Date().getWeek() %&amp;gt;&lt;/code&gt;&lt;br&gt;&lt;br&gt;File Title Template (random):&lt;br&gt;&lt;br&gt;&lt;code&gt;&amp;lt;%= &#10;        _.sample([&amp;quot;Class01.java&amp;quot;, &amp;quot;Class02.java&amp;quot;, &amp;quot;Class03.java&amp;quot;, &#10;        &amp;quot;Class04.java&amp;quot;, &amp;quot;Class05.java&amp;quot;, &amp;quot;Class06.java&amp;quot;, &amp;quot;Class07.java&amp;quot;, &#10;        &amp;quot;Class08.java&amp;quot;, &amp;quot;Class09.java&amp;quot;, &amp;quot;Class10.java&amp;quot;]) %&amp;gt;&lt;/code&gt;&#10;      &lt;/div&gt;&#10;    &lt;/div&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;&#10;"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+        <clientProperties>
+          <JEditorPane.honorDisplayProperties class="java.lang.Boolean" value="false"/>
+          <JEditorPane.w3cLengthUnits class="java.lang.Boolean" value="false"/>
+          <charset class="java.lang.String" value=""/>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
+      </component>
+      <vspacer id="5f10e">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+    </children>
+  </grid>
+</form>
