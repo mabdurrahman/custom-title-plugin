@@ -59,10 +59,14 @@ File Title Template (random):
 <%= _.sample(["Class01.java", "Class02.java", "Class03.java", "Class04.java", "Class05.java", "Class06.java", "Class07.java", "Class08.java", "Class09.java", "Class10.java"]) %>
 ```
 
+## Changes log
+
+* Version 0.0.2 - Propagate Settings without restarts
+* Version 0.0.1 - First release
+
 ## TODOs
 
 * Add git variables (i.e. gitHead, gitAdded, gitDeleted, etc.)
-* Listen to Settings changes and update title directly without restarts
 
 ## Contributing
 

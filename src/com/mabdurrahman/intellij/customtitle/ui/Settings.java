@@ -3,6 +3,7 @@ package com.mabdurrahman.intellij.customtitle.ui;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.options.ConfigurationException;
+import com.mabdurrahman.intellij.customtitle.TitleComponent;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,6 +58,8 @@ public class Settings implements Configurable {
         PropertiesComponent prop = PropertiesComponent.getInstance();
         prop.setValue(TEMPLATE_PATTERN_PROJECT, projectTemplatePattern.getText());
         prop.setValue(TEMPLATE_PATTERN_FILE, fileTemplatePattern.getText());
+
+        TitleComponent.updateSettings();
     }
 
     @Override

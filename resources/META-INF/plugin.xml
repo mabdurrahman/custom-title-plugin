@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.mabdurrahman.intellij.customtitle</id>
   <name>Custom Title</name>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
   <vendor email="ma.abdurrahman@gmail.com" url="http://github.com/mabdurrahman/custom-title-plugin">Mahmoud Abdurrahman</vendor>
 
   <description><![CDATA[
@@ -9,7 +9,12 @@
       ]]></description>
 
   <change-notes><![CDATA[
-        First release
+        <dl>
+          <dt>Version 0.0.2</dt>
+          <dd>Propagate Settings without restarts</dd>
+          <dt>Version 0.0.1</dt>
+          <dd>First minimal specification</dd>
+        </dl>
       ]]>
   </change-notes>
 
