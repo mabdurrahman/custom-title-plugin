@@ -6,12 +6,17 @@ import com.intellij.openapi.wm.impl.FrameTitleBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.picocontainer.MutablePicoContainer;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by mabdurrahman on 5/3/17.
  */
 public class TitleComponent implements ApplicationComponent {
 
     public static final String FRAME_TITLE_BUILDER = "com.intellij.openapi.wm.impl.FrameTitleBuilder";
+
+    private static List<SettingChangeListener> listenerList = new ArrayList<>();
 
     @Override
     public void initComponent() {
@@ -29,5 +34,19 @@ public class TitleComponent implements ApplicationComponent {
     @Override
     public String getComponentName() {
         return getClass().getSimpleName();
+    }
+
+    public static void addSettingChangeListener(SettingChangeListener listener) {
+        listenerList.add(listener);
+    }
+
+    public static void updateSettings() {
+        for (SettingChangeListener listener : listenerList) {
+            listener.onSettingsChange();
+        }
+    }
+
+    public interface SettingChangeListener {
+        void onSettingsChange();
     }
 }

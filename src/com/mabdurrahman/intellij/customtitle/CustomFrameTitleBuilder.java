@@ -2,19 +2,24 @@ package com.mabdurrahman.intellij.customtitle;
 
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.wm.IdeFrame;
+import com.intellij.openapi.wm.WindowManager;
 import com.intellij.openapi.wm.impl.FrameTitleBuilder;
+import com.intellij.openapi.wm.impl.IdeFrameImpl;
 import com.mabdurrahman.intellij.customtitle.ui.Settings;
 import org.jetbrains.annotations.NotNull;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import java.io.File;
 import java.io.InputStreamReader;
 
 /**
  * Created by mabdurrahman on 5/3/17.
  */
-public class CustomFrameTitleBuilder extends FrameTitleBuilder {
+public class CustomFrameTitleBuilder extends FrameTitleBuilder implements TitleComponent.SettingChangeListener {
 
     private static final String DEFAULT_TEMPLATE_PATTERN_PROJECT = "<% if (projectDefaultTitle) { %><%= projectDefaultTitle %><% } %>";
     private static final String DEFAULT_TEMPLATE_PATTERN_FILE = "<% if (fileDefaultTitle) { %><%= fileDefaultTitle %><% } %>";
@@ -38,9 +43,28 @@ public class CustomFrameTitleBuilder extends FrameTitleBuilder {
             // evaluate JavaScript Underscore library
             engine.eval(new InputStreamReader(getClass().getResourceAsStream("/underscore-min.js")));
 
+            // create new JavaScript methods references for templates
+            engine.eval("var projectTemplate;");
+            engine.eval("var fileTemplate;");
+
+            prepareTemplateSettings();
+        } catch (Exception e) {
+            // we took precaution below
+        }
+
+        TitleComponent.addSettingChangeListener(this);
+    }
+
+    private void prepareTemplateSettings() {
+        PropertiesComponent prop = PropertiesComponent.getInstance();
+
+        projectPattern = prop.getValue(Settings.TEMPLATE_PATTERN_PROJECT, DEFAULT_TEMPLATE_PATTERN_PROJECT);
+        filePattern = prop.getValue(Settings.TEMPLATE_PATTERN_FILE, DEFAULT_TEMPLATE_PATTERN_FILE);
+
+        try {
             // create new JavaScript methods of required templates
-            engine.eval("var projectTemplate = _.template('" + projectPattern + "')");
-            engine.eval("var fileTemplate = _.template('" + filePattern + "')");
+            engine.eval("projectTemplate = _.template('" + projectPattern + "')");
+            engine.eval("fileTemplate = _.template('" + filePattern + "')");
         } catch (Exception e) {
             // we took precaution below
         }
@@ -48,6 +72,27 @@ public class CustomFrameTitleBuilder extends FrameTitleBuilder {
 
     public static void setDefaultBuilder(FrameTitleBuilder defaultBuilder) {
         CustomFrameTitleBuilder.defaultBuilder = defaultBuilder;
+    }
+
+    @Override
+    @SuppressWarnings("ConstantConditions")
+    public void onSettingsChange() {
+        prepareTemplateSettings();
+
+        for (IdeFrame frame : WindowManager.getInstance().getAllProjectFrames()) {
+            if (frame.getProject() != null) {
+                String projectTitle = getProjectTitle(frame.getProject());
+                ((IdeFrameImpl)frame).setTitle(projectTitle);
+
+                try {
+                    File currentFile = (File)((IdeFrameImpl) frame).getRootPane().getClientProperty("Window.documentFile");
+                    VirtualFile virtualFile = LocalFileSystem.getInstance().findFileByIoFile(currentFile);
+                    IdeFrameImpl.updateTitle((IdeFrameImpl) frame, projectTitle, getFileTitle(frame.getProject(), virtualFile), currentFile);
+                } catch (Exception e) {
+                    IdeFrameImpl.updateTitle((IdeFrameImpl) frame, projectTitle, null, null);
+                }
+            }
+        }
     }
 
     @Override
