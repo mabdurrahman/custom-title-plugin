@@ -19,6 +19,8 @@ The following variables are available for "File Title Template":
 - `fileName`
 - `filePath`
 - `fileExt`
+- `moduleName` (if no modules used it returns `projectName` instead)
+- `modulePath`
 
 More variables going to be added on upcoming releases.
 
@@ -48,6 +50,17 @@ File Title Template (empty):
 <% %>
 ```
 
+### Include module info
+
+Project Title Template:
+```
+<% if (projectDefaultTitle) { %><%= projectDefaultTitle %><% } %>
+```
+File Title Template (empty):
+```
+<% if (fileDefaultTitle) { %><%= fileDefaultTitle %><% } %><% if (moduleName && moduleName !== projectName) { %> (<%= moduleName %>)<% } %>
+```
+
 ### Advanced usage
 
 Project Title Template (add week number):
@@ -61,6 +74,7 @@ File Title Template (random):
 
 ## Changes log
 
+* Version 0.0.3 - Module info added to available variables for "File Title Template"
 * Version 0.0.2 - Propagate Settings without restarts
 * Version 0.0.1 - First release
 
