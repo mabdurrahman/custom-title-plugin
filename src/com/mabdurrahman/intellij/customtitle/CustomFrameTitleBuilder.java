@@ -1,7 +1,9 @@
 package com.mabdurrahman.intellij.customtitle;
 
 import com.intellij.ide.util.PropertiesComponent;
+import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.FileIndexFacade;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.IdeFrame;
@@ -122,6 +124,8 @@ public class CustomFrameTitleBuilder extends FrameTitleBuilder implements TitleC
 
         String fileCustomTitle;
         try {
+            Module fileModule = FileIndexFacade.getInstance(project).getModuleForFile(virtualFile);
+
             String projectDefaultTitle = defaultBuilder.getProjectTitle(project);
             String projectName = project.getName();
             String projectPath = project.getBasePath();
@@ -131,6 +135,13 @@ public class CustomFrameTitleBuilder extends FrameTitleBuilder implements TitleC
             String filePath = virtualFile.getPath();
             String fileExt = virtualFile.getExtension();
 
+            String moduleName = null;
+            String modulePath = null;
+            if (fileModule != null) {
+                moduleName = fileModule.getName();
+                modulePath = fileModule.getModuleFilePath();
+            }
+
             fileCustomTitle = engine.eval("fileTemplate({" +
                     "projectDefaultTitle: '" + projectDefaultTitle + "'," +
                     "projectName: '" + projectName + "'," +
@@ -138,7 +149,9 @@ public class CustomFrameTitleBuilder extends FrameTitleBuilder implements TitleC
                     "fileDefaultTitle: '" + fileDefaultTitle + "'," +
                     "fileName: '" + fileName + "'," +
                     "filePath: '" + filePath + "'," +
-                    "fileExt: '" + fileExt + "'" +
+                    "fileExt: '" + fileExt + "'," +
+                    "moduleName: '" + moduleName + "'," +
+                    "modulePath: '" + modulePath + "'" +
                     "})").toString();
 
         } catch (Exception e) {
