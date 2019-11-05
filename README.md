@@ -24,6 +24,14 @@ The following variables are available for "File Title Template":
 
 More variables going to be added on upcoming releases.
 
+## Setup/Configuration
+After the plugin has been installed into IntelliJ, go to menu
+
+   `File` --> `Settings` --> `Appearance` & `Behaviour` --> `Custom Title`
+   
+and adjust the both parameters `Project Title Template` and `File Title Template` accordingly.
+    
+
 ## Examples
 
 ### Default
